@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/guard/ProtectedRoute";
 
+import MainLayout from "./components/layout/MainLayout";
 import Login from "./pages/auth/Login";
 import DashboardAdmin from "./pages/admin/Dashboard";
 import DashboardAssociado from "./pages/associado/Dashboard";
@@ -44,30 +45,28 @@ function PaginaInicial() {
   );
 }
 
+
 export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
 
-      <Route
-        element={<ProtectedRoute allowedRoles={["admin"]} />}
-      >
-        <Route path="/admin" element={<DashboardAdmin />} />
+      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+        <Route element={<MainLayout />}>
+          <Route path="/admin" element={<DashboardAdmin />} />
+        </Route>
       </Route>
 
-      <Route
-        element={<ProtectedRoute allowedRoles={["associado"]} />}
-      >
-        <Route
-          path="/associado"
-          element={<DashboardAssociado />}
-        />
+      <Route element={<ProtectedRoute allowedRoles={["associado"]} />}>
+        <Route element={<MainLayout />}>
+          <Route path="/associado" element={<DashboardAssociado />} />
+        </Route>
       </Route>
 
-      <Route
-        element={<ProtectedRoute allowedRoles={["empresa"]} />}
-      >
-        <Route path="/empresa" element={<DashboardEmpresa />} />
+      <Route element={<ProtectedRoute allowedRoles={["empresa"]} />}>
+        <Route element={<MainLayout />}>
+          <Route path="/empresa" element={<DashboardEmpresa />} />
+        </Route>
       </Route>
 
       <Route path="/" element={<PaginaInicial />} />
@@ -75,3 +74,4 @@ export default function App() {
     </Routes>
   );
 }
+

@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
-import logoIapep from "../../assets/logo/iapep-redonda.png";
+import logo from "../../assets/logo/logo-redonda.png";
 
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -79,7 +79,7 @@ export default function Login() {
         
         {/* Logo */}
         <img
-            src={logoIapep}
+            src={logo}
             alt="Logotipo do IAPEP"
             className="mb-5 h-28 w-28 object-contain"
         />
